@@ -9,7 +9,7 @@ function GuessingGame(country, difficulty, pos) {
   // follow the score
   this.score = 0;
   this.lifeLeft = 3;
-  this.turnLeft = 15;
+  this.turnLeft = 5;
 }
 
 // FEATURE #
@@ -26,8 +26,8 @@ GuessingGame.prototype.randomPick = function() {
   ];
   if (this.countryAlreadyUsed.indexOf(this.countryPicked) === -1) {
     this.countryAlreadyUsed.push(this.countryPicked);
-  } else if (Math.random() > 0.01) {
-    return myGame.randomPick();
+  } else if (Math.random() > 0.001) {
+    return this.randomPick();
   }
   return this.countryPicked;
 };
@@ -36,30 +36,27 @@ GuessingGame.prototype.randomPick = function() {
 
 GuessingGame.prototype.checkIfRight = function(countryPicked, countryUser) {
   this.turnLeft = this.turnLeft - 1;
-  var countryUser = prompt(
-    "To which country refer the following letters : " + this.countryPicked.pos
-  );
+  var countryUser = document.getElementById("user-answer").value;
+
   if (countryUser.toLowerCase() === this.countryPicked.name) {
     this.score = this.score + 1;
+    return true;
   } else {
     this.lifeLeft = this.lifeLeft - 1;
-    console.log("il vous reste " + this.lifeLeft + " vies");
+    return false;
   }
-  console.log(this.turnLeft);
-  console.log("votre score est de " + this.score + " points");
-  return this.score;
 };
 
 // How the game end
 
-GuessingGame.prototype.noMoreLives = function(lifeLeft) {
+GuessingGame.prototype.noMoreLives = function() {
   if (this.lifeLeft === O) {
     //return true;
     console.log("sorry bobby, no more lives :(");
   }
 };
 
-GuessingGame.prototype.gameFinish = function(turnLeft) {
+GuessingGame.prototype.gameFinish = function() {
   if (this.turnLeft === O) {
     //return true;
     console.log("finito bambino");

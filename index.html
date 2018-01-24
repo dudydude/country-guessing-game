@@ -4,15 +4,73 @@
 <head>
     <title>Country Guessing Game</title>
     <link type="text/css" rel="stylesheet" href="css/guess.css" media="screen">
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+
 </head>
 
 <body>
-    <div id="header">
-        <ul>
-            <li class="heart"></li>
-            <li class="heart"></li>
-            <li class="heart"></li>
-        </ul>
+
+
+    <div id="container">
+
+        <div id="home-game">
+            <div id="logo">
+                <img src="img/logo.png" />
+            </div>
+            <button id="button-start">
+                <a href="#" id="click"> START A NEW GAME</a>
+            </button>
+        </div>
+
+        <div id="game-board">
+            <div id="board-header">
+
+                <div id="lifeleft">
+                    <ul>
+                        <li class="heart-on">
+                        </li>
+                        <li class="heart-on">
+                        </li>
+                        <li class="heart-on">
+                        </li>
+                    </ul>
+                </div>
+                <div id="timer">
+                    <p>tic tac</p>
+                </div>
+                <div id="score">
+                </div>
+            </div>
+
+            <div id="map">
+            </div>
+
+            <form id="user-input">
+
+                <div class="group">
+                    <input type="text" id="user-answer">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Name</label>
+                </div>
+                <button class="user-click" id="user-submit">Submit</button>
+            </form>
+
+        </div>
+
+        <div id="last-screen">
+            <div id="show-score">
+                <h2 id="winner" class="final-display">WELL DONE YOU WON !</h2>
+                <h2 id="looser" class="final-display">MMH ALMOST, TRY AGAIN! ;)</h2>
+            </div>
+            <button class="user-click" id="restart-btn">RESTART</button>
+        </div>
+
+    </div>
+
+
+    <!-- <div id="header">
+        
 
         <h2>Timer</h2>
         <p>Score:
@@ -23,20 +81,16 @@
 
     </div>
     <div id='player'>
-        <div id="user-input">
-            <input type="text" id="uname" name="name" placeholder="Time to guess !">
-        </div>
-        <div id="user-submit">
-            <button>Envoyer</button>
-        </div>
-    </div>
+
+    </div> -->
 
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtkrIe8K5p40RDF2331BjySGxjeUxNIEo"></script>
 
-
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/gamelogic.js"></script>
-    <!--  <script type="text/javascript" src="js/logic.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script type="text/javascript " src="js/main.js"></script>
+    <script type="text/javascript " src="js/gamelogic.js"></script>
+    <!--  <script type="text/javascript " src="js/logic.js "></script>-->
 </body>
 
 </html>
