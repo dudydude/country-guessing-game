@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Muli");
 
 * {
   margin: 0;
@@ -11,12 +12,33 @@ body {
   flex-direction: column;
 }
 
+body h2 {
+  font-family: Muli;
+  font-size: 50px;
+}
+
+body h3 {
+  font-family: Muli;
+  font-size: 30px;
+}
+
 #container {
-  width: 60%;
+  width: 70%;
   height: 750px;
-  margin: 0 20%;
+  margin: 0 15%;
   position: relative;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  background: #606c88; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #606c88,
+    #3f4c6b
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #606c88,
+    #3f4c6b
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* screen #1 : homepage */
@@ -72,13 +94,58 @@ body {
   right: 0;
 }
 
+#rules {
+  height: 600px;
+  width: 90%;
+  margin: 5% 5%;
+  position: absolute;
+  display: none;
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#rules h2 {
+  text-align: center;
+}
+#rules button {
+  width: 30%;
+  height: 10%;
+  margin: 5% 35%;
+}
+
+#rules li,
+h3 {
+  text-align: left;
+  margin: 2% 0 2% 20%;
+}
+
+#rules p {
+  text-align: center;
+  font-style: italic;
+}
+
+.number {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* Screen choose your difficulty */
+
+#choose-difficulty {
+  height: 90%;
+  width: 90%;
+  margin: 5%;
+  display: none;
+  flex-direction: column;
+}
+
 /* screen #2 : game zone */
 
 #game-board {
-  height: 650px;
+  height: 100%;
   width: 90%;
-  margin: 5%;
-  background-color: red;
+  margin: 0 5%;
   display: none;
   flex-direction: column;
 }
@@ -89,11 +156,11 @@ body {
   flex-direction: row;
   align-content: center;
   width: 100%;
-  height: 10%;
-  background-color: green;
-  justify-content: space-between;
+  height: auto;
+  justify-content: space-around;
   padding: 2%;
-  box-sizing: border-box;
+  margin-top: 2%;
+  background-color: white;
 }
 
 #board-header ul {
@@ -105,24 +172,34 @@ body {
   list-style-type: none;
 }
 
+#lifeleft {
+  display: flex;
+  flex-direction: row;
+}
+#lifeleft p {
+  margin-right: 1%;
+}
+
 .heart-on {
   height: 40px;
-  width: 80px;
+  width: 40px;
   background-image: url(../img/life_ok.png);
   background-repeat: no-repeat;
 }
 
 .heart-off {
   height: 40px;
-  width: 80px;
+  width: 40px;
   background-image: url(../img/life_ko.png);
   background-repeat: no-repeat;
 }
 /* Map container */
 
 #map {
-  height: 70%;
+  height: 80%;
+  width: 100%;
   background-color: #ffffff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 /* user input */
@@ -130,111 +207,78 @@ body {
 #user-input {
   display: flex;
   flex-direction: row;
-  align-content: center;
-  width: 70%;
-  margin: 5% 15%;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2%;
+  padding-top: 2%;
+  background-color: white;
 }
 
 .group {
-  position: relative;
-  margin-bottom: 45px;
-}
-input {
-  font-size: 18px;
-  padding: 10px 10px 10px 5px;
-  display: block;
-  width: 400px;
-  border: none;
-  border-bottom: 1px solid #757575;
-}
-input:focus {
-  outline: none;
+  opacity: 0;
+  width: 350px;
+  margin-top: 25px;
+  transition: opacity 0.3s ease-in-out;
+  border: 1px solid black;
 }
 
-/* LABEL ======================================= */
-label {
-  color: #999;
-  font-size: 18px;
-  font-weight: normal;
+.group input {
+  width: 100%;
+  padding: 0 5px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#inputLabel {
   position: absolute;
   pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
+  top: 0;
+  left: 0;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 5px;
+  transition: 0.2s ease-in-out;
 }
 
-/* active state */
-input:focus ~ label,
-input:valid ~ label {
-  top: -20px;
-  font-size: 14px;
-  color: #5264ae;
-}
-
-/* BOTTOM BARS ================================= */
-.bar {
-  position: relative;
-  display: block;
-  width: 300px;
-}
-.bar:before,
-.bar:after {
-  content: "";
-  height: 2px;
-  width: 0;
-  bottom: 1px;
-  background: #5264ae;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-.bar:before {
-  left: 50%;
-}
-.bar:after {
-  right: 50%;
-}
-
-/* text input */
-
-.user-click {
-  width: 20%;
-  height: 40px;
-  background-color: red;
-  box-shadow: 0 1px 10px 0 #666;
-  transition: all 0.1s ease-in-out;
-  font-size: 1em;
-  color: white;
-  text-align: center;
-}
-
-.user-click:hover {
-  box-shadow: 0 2px 4px 0 #666;
-  transform: scale(1.05);
+.group input:valid + #inputLabel {
+  top: -15px;
+  font-size: 11px;
+  font-weight: normal;
+  color: #9e9e9e;
 }
 
 /* screen #3 : show score + restart */
 #last-screen {
-  height: 600px;
+  height: 95%;
   width: 90%;
-  margin: 10% 5%;
-  background-color: yellow;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  margin: 2% 5%;
   display: none;
+  flex-direction: column;
+  background-color: white;
 }
 
-#last-screen button {
+#show-score {
+  margin: 5% 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#looser-gif {
+  height: 40%;
   width: 40%;
   margin: 0 30%;
 }
 
-.final-display {
-  color: ;
-  font-size: 2em;
-  margin: 25% 0 10% 0;
+#last-screen h2 {
+  text-align: center;
+}
+
+#restart-btn {
+  width: 40%;
+  height: 60px;
+  margin: 0 30%;
 }

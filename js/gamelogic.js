@@ -9,7 +9,7 @@ function GuessingGame(country, difficulty, pos) {
   // follow the score
   this.score = 0;
   this.lifeLeft = 3;
-  this.turnLeft = 5;
+  this.turnLeft = 10;
 }
 
 // FEATURE #
