@@ -10,12 +10,13 @@ function GuessingGame(country, difficulty, pos) {
   this.score = 0;
   this.lifeLeft = 3;
   this.turnLeft = 10;
+  this.totalTurn = 10;
 }
 
 // FEATURE #
 // Difficulty
 // MultiPlayer (2 or +) => initializing players name & make them play one after one
-// Leaderboard
+// Leaderboards
 // Submit new category via @mail:to button
 
 // create a new turn
@@ -47,18 +48,23 @@ GuessingGame.prototype.checkIfRight = function(countryPicked, countryUser) {
   }
 };
 
-// How the game end
+// Set difficulty
 
-GuessingGame.prototype.noMoreLives = function() {
-  if (this.lifeLeft === O) {
-    //return true;
-    console.log("sorry bobby, no more lives :(");
-  }
-};
+// GuessingGame.prototype.setDifficulty = function (){
+//   var countryUser = document.getElementById("user-answer").value;
+//   if ()
+// }
 
-GuessingGame.prototype.gameFinish = function() {
-  if (this.turnLeft === O) {
-    //return true;
-    console.log("finito bambino");
-  }
-};
+// GuessingGame.prototype.noMoreLives = function() {
+//    if (this.lifeLeft === O) {
+//      //return true;
+//      console.log("sorry bobby, no more lives :(");
+//    }
+//  };
+
+// GuessingGame.prototype.gameFinish = function() {
+//   if (this.turnLeft === O) {
+//     //return true;
+//     console.log("finito bambino");
+//   }
+// };

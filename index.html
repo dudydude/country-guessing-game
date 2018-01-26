@@ -36,11 +36,11 @@
 
             <ul>
                 <li>
-                    <span class="number">#1</span> You will have to guess the name of the country that is marked </li>
+                    <span class="number">#1</span> Guess the name of the country that is marked </li>
                 <li>
-                    <span class="number">#2</span> You only have one chance to find the country</li>
+                    <span class="number">#2</span> You only have one chance to guess it right</li>
                 <li>
-                    <span class="number">#3</span> And to had more fun, you only have 3 lives, so be careful &#x1F609</li>
+                    <span class="number">#3</span> To add more fun, you only have 3 lives, so be careful &#x1F609</li>
             </ul>
 
             <button class="waves-effect waves-light btn" id="letsplay">Let's play !</button>
@@ -49,13 +49,13 @@
         </div>
 
         <div id="choose-difficulty">
-            <button id="easy" class="waves-effect waves-light btn">
+            <button id="1" class="waves-effect waves-light btn">
                 easy
             </button>
-            <button id="medium" class="waves-effect waves-light btn">
+            <button id="2" class="waves-effect waves-light btn">
                 medium
             </button>
-            <button id="hard" class="waves-effect waves-light btn">
+            <button id="3" class="waves-effect waves-light btn">
                 Hard
             </button>
         </div>
@@ -86,14 +86,14 @@
             <div id="map">
             </div>
 
-            <div id="user-input">
+            <form id="user-input">
 
                 <div class="group input-field">
                     <input placeholder="Type your answer..." type="text" id="user-answer" class="validate" autofocus>
 
                 </div>
-                <button class="waves-effect waves-light btn" id="user-submit">Submit</button>
-            </div>
+                <button class="waves-effect waves-light btn" id="user-submit" type="submit">Submit</button>
+            </form>
 
         </div>
 
@@ -139,6 +139,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript " src="js/country.js"></script>
     <script type="text/javascript " src="js/main.js"></script>
     <script type="text/javascript " src="js/gamelogic.js"></script>
     <!--  <script type="text/javascript " src="js/logic.js "></script>-->

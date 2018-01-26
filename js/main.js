@@ -1,75 +1,9 @@
-var country = [
-  {
-    name: "france",
-    countryCapital: "paris",
-    pos: { lat: 48.8, lng: 2.3 },
-    difficulty: 3
-  },
-  {
-    name: "china",
-    countryCapital: "pekin",
-    pos: { lat: 39.9, lng: 116.3 },
-    difficulty: 1
-  },
-  {
-    name: "japan",
-    countryCapital: "tokyo",
-    pos: { lat: 35.6, lng: 139.6 },
-    difficulty: 2
-  },
-  {
-    name: "russia",
-    countryCapital: "moscow",
-    pos: { lat: 55, lng: 37 },
-    difficulty: 1
-  },
-  {
-    name: "united states",
-    countryCapital: "washington dc",
-    pos: { lat: 38.5, lng: 77 },
-    difficulty: 1
-  },
-  {
-    name: "belgium",
-    countryCapital: "bruxelles",
-    pos: { lat: 50.8, lng: 4.3 },
-    difficulty: 1
-  },
-  {
-    name: "brazil",
-    countryCapital: "brasilia",
-    pos: { lat: -15.4, lng: -47.5 },
-    difficulty: 1
-  },
-  {
-    name: "afghanistan",
-    countryCapital: "kabul",
-    pos: { lat: 34.5, lng: 69.1 },
-    difficulty: 2
-  },
-  {
-    name: "rwanda",
-    countryCapital: "kigali",
-    pos: { lat: -1.5, lng: 30.3 },
-    difficulty: 3
-  },
-  {
-    name: "denmark",
-    countryCapital: "copenhagen",
-    pos: { lat: 55, lng: 12 },
-    difficulty: 1
-  },
-  {
-    name: "ecuador",
-    countryCapital: "quito",
-    pos: { lat: -0.13, lng: -78.3 },
-    difficulty: 3
-  }
-];
-//pour récupérer les pays + capitale https://www.countries-ofthe-world.com/capitals-of-the-world.html
-// map.setCenter a utilisé pour modifier la position
+var world_geometry;
 var map;
 var marker;
+
+//pour récupérer les pays + capitale https://www.countries-ofthe-world.com/capitals-of-the-world.html
+// map.setCenter a utilisé pour modifier la position
 
 $(document).ready(function() {
   $(window).resize(function() {
@@ -77,6 +11,7 @@ $(document).ready(function() {
   });
 
   var guessingGame = new GuessingGame(country);
+
   var turn = guessingGame.randomPick().pos;
   var newCenter = { lat: turn.lat, lng: turn.lng };
 
@@ -133,10 +68,36 @@ $(document).ready(function() {
       }
     ]
   });
-  marker = new google.maps.Marker({
-    position: newCenter,
-    map: map
+  // marker = new google.maps.Marker({
+  //   position: newCenter,
+  //   map: map
+  // });
+
+  var iso = `ISO_2DIGIT IN ('${guessingGame.countryPicked.layer}')`;
+
+  world_geometry = new google.maps.FusionTablesLayer({
+    query: {
+      select: "geometry",
+      from: "1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk",
+      where: iso
+    },
+    map: map,
+    suppressInfoWindows: true,
+
+    styles: [
+      {
+        polygonOptions: {
+          fillColor: "#FF0000",
+          strokeColor: "#FF0000",
+          strokeWeight: "int"
+        }
+      }
+    ]
   });
+  // marker = new google.maps.Marker({
+  //   position: newCenter,
+  //   map: map
+  // });
 
   // Fonctione reset game
 
@@ -147,6 +108,7 @@ $(document).ready(function() {
     $(".heart-off")
       .removeClass("heart-off")
       .addClass("heart-on");
+
     $("#last-screen").css({ display: "none" });
     $("#game-board").css({ display: "flex" });
     google.maps.event.trigger(map, "resize");
@@ -161,22 +123,22 @@ $(document).ready(function() {
     $("#rules").css({ display: "flex" });
   });
 
-  // After reading the rules ==> let's play
-
   $("#letsplay").click(function() {
     $("#rules").css({ display: "none" });
-    $("#choose-difficulty").css({ display: "flex" });
-  });
-  // use to set difficulty - check comment appeler le bon deck correspondant
-
-  $("#easy").click(function() {
-    $("#choose-difficulty").css({ display: "none" });
     $("#game-board").css({ display: "flex" });
     google.maps.event.trigger(map, "resize");
     // $("#map").html("<h2>" + map + "</h2>");
     $("#map").html(map.setCenter(newCenter));
     $("#score").html("<p>" + "Score: " + guessingGame.score + "</p>");
   });
+
+  // After reading the rules ==> let's play
+
+  $("#letsplay").click(function() {
+    $("#rules").css({ display: "none" });
+    $("#game-board").css({ display: "flex" });
+  });
+  // use to set difficulty - check comment appeler le bon deck correspondant
 
   // Check user answer
 
@@ -198,10 +160,7 @@ $(document).ready(function() {
       );
 
       // If your score is above the average (number of turn / 2), you are "winner"
-      if (
-        guessingGame.lifeLeft === 0 &&
-        guessingGame.score < Math.floor(guessingGame.turnLeft / 2)
-      ) {
+      if (guessingGame.score < Math.floor(guessingGame.totalTurn / 2)) {
         $("#winner").css({ display: "none" });
       } else {
         $("#looser").css({ display: "none" });
@@ -217,9 +176,21 @@ $(document).ready(function() {
       // If not, the map display a new country
       $("input[type=text], textarea").val("");
       turn = guessingGame.randomPick().pos;
+
       newCenter = { lat: turn.lat, lng: turn.lng };
+
       $("#map").html(map.setCenter(newCenter));
-      $("#map").html(marker.setPosition(newCenter));
+      // $("#map").html(marker.setPosition(newCenter));
+      // $("map").html(world_geometry.setMap(map));
+
+      // Test Maxence
+      world_geometry.setMap(null);
+      world_geometry.setQuery({
+        select: "geometry",
+        from: "1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk",
+        where: `ISO_2DIGIT IN ('${guessingGame.countryPicked.layer}')`
+      });
+      world_geometry.setMap(map);
     }
   });
 
