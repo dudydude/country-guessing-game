@@ -75,12 +75,7 @@ $(document).ready(function() {
   $(window).resize(function() {
     google.maps.event.trigger(map, "resize");
   });
-  function newLocation(newLat, newLng) {
-    map.setCenter({
-      lat: newLat,
-      lng: newLng
-    });
-  }
+
   var guessingGame = new GuessingGame(country);
   var turn = guessingGame.randomPick().pos;
   var newCenter = { lat: turn.lat, lng: turn.lng };
