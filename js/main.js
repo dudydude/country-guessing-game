@@ -160,7 +160,7 @@ $(document).ready(function() {
       );
 
       // If your score is above the average (number of turn / 2), you are "winner"
-      if (guessingGame.score < Math.floor(guessingGame.totalTurn / 2)) {
+      if (guessingGame.score === 0 || guessingGame.score < 5) {
         $("#winner").css({ display: "none" });
       } else {
         $("#looser").css({ display: "none" });
