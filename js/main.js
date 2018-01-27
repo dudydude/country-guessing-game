@@ -19,7 +19,7 @@ $(document).ready(function() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
     center: newCenter,
-    mapTypeId: "terrain",
+    mapTypeId: "sattelite",
     mapTypeControl: false,
     disableDefaultUI: true,
     styles: [
