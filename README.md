@@ -9,4 +9,4 @@ New features coming :
 - submit your own question
 - follow your score & challenge your friends with a leaderboard 
 
-play here:  https://dudydude.github.io/ironhack-project1/
+play here:  https://github.com/dudydude/country-guessing-game
