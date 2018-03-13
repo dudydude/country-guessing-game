@@ -19,7 +19,11 @@ $(document).ready(function() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
     center: newCenter,
+<<<<<<< HEAD
     mapTypeId: "satellite",
+=======
+    mapTypeId: "sattelite",
+>>>>>>> df87843eb03f9bb970293b6b4b2b5cec10808555
     mapTypeControl: false,
     disableDefaultUI: true,
     styles: [
