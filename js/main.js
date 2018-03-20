@@ -141,7 +141,9 @@ $(document).ready(function() {
   // use to set difficulty - check comment appeler le bon deck correspondant
 
   // Check user answer
-
+  $('#user-input').submit(function(e) {
+	  e.preventDefault();
+  })
   $("#user-submit").click(function() {
     var right = guessingGame.checkIfRight();
     if (right === true) {
